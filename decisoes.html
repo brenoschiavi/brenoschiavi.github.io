@@ -47,18 +47,17 @@
         const response = await fetch("decisoes.json");
         const decisoes = await response.json();
 
-       noticias.forEach(noticia => {
-  const card = document.createElement('div');
-  card.className = 'benefit';
-  card.innerHTML = `
-    <h3>🧠 <strong>${noticia.titulo}</strong></h3>
-    <img src="${noticia.imagem}" alt="${noticia.titulo}" style="width: 100%; border-radius: 8px; margin: 12px 0;">
-    <p>${noticia.texto}</p>
-    <p style="margin-top: 10px;"><a href="${noticia.fonte}" target="_blank" style="color: #f4c430;">🔗 Acesse a fonte oficial</a></p>
-  `;
-  container.appendChild(card);
-});
-
+        decisoes.forEach(noticia => {
+          const card = document.createElement('div');
+          card.className = 'benefit';
+          card.innerHTML = `
+            <h3>🧠 <strong>${noticia.titulo}</strong></h3>
+            <img src="${noticia.imagem}" alt="${noticia.titulo}" style="width: 100%; border-radius: 8px; margin: 12px 0;">
+            <p>${noticia.texto}</p>
+            <p style="margin-top: 10px;"><a href="${noticia.fonte}" target="_blank" style="color: #f4c430;">🔗 Acesse a fonte oficial</a></p>
+          `;
+          container.appendChild(card);
+        });
       } catch (erro) {
         container.innerHTML = "<p>Erro ao carregar decisões. Verifique o arquivo JSON.</p>";
       }
