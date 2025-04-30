@@ -155,7 +155,7 @@
   </footer>
 
   <script>
-  const PLANILHA_URL = "https://opensheet.elk.sh/1bzy9hGTzXX-ALl7_oi70J1NDQRtL8dA-6FVNwbv8jck/Vagas";
+  const PLANILHA_URL = "https://opensheet.elk.sh/1bzy9hGTzXX-ALl7_oi70J1NDQRtL8dA-6FVNwbv8jck/Vaga";
   let todasAsVagas = [];
 
   async function carregarVagasGoogleSheets() {
@@ -169,52 +169,56 @@
       return diffDias <= 30;
     });
 
-    filtrarVagas('Todas');
+    filtrarVagas("Todas");
   }
 
   function filtrarVagas(filtro) {
-    const vagasDiv = document.getElementById('vagasDinamicas');
-    vagasDiv.innerHTML = '';
+    const vagasDiv = document.getElementById("vagasDinamicas");
+    vagasDiv.innerHTML = "";
     const organizadas = {};
 
-    document.querySelectorAll('.filter-buttons button').forEach(btn => btn.classList.remove('active'));
-    const btnAtivo = [...document.querySelectorAll('.filter-buttons button')].find(b => b.textContent === filtro);
-    if (btnAtivo) btnAtivo.classList.add('active');
+    document.querySelectorAll(".filter-buttons button").forEach(btn => btn.classList.remove("active"));
+    const btnAtivo = [...document.querySelectorAll(".filter-buttons button")].find(b => b.textContent === filtro);
+    if (btnAtivo) btnAtivo.classList.add("active");
 
     todasAsVagas.forEach(vaga => {
-      if (!vaga["Área"] || (!vaga["Descrição da vaga"] && !vaga["Link da vaga"])) return;
-      if (filtro !== 'Todas' && vaga["Área"] !== filtro) return;
-      if (!organizadas[vaga["Área"]]) organizadas[vaga["Área"]] = [];
-      organizadas[vaga["Área"]].push(vaga);
+      const area = vaga["Área"];
+      const descricao = vaga["Descrição da vaga"];
+      const link = vaga["Link da vaga"];
+      if (!area || !descricao || !link) return;
+      if (filtro !== "Todas" && area !== filtro) return;
+
+      if (!organizadas[area]) organizadas[area] = [];
+      organizadas[area].push({ descricao, link });
     });
 
     for (const area in organizadas) {
-      const bloco = document.createElement('div');
-      bloco.className = 'benefit';
+      const bloco = document.createElement("div");
+      bloco.className = "benefit";
       bloco.innerHTML = `<h3>⚖️ Direito ${area}</h3><ul>` +
-        organizadas[area].map(v => `<li>${v["Descrição da vaga"]} – <a href="${v["Link da vaga"]}" target="_blank">Ver vaga</a></li>`).join('') +
-        '</ul>';
+        organizadas[area].map(v => `<li>${v.descricao} – <a href="${v.link}" target="_blank">Ver vaga</a></li>`).join("") +
+        "</ul>";
       vagasDiv.appendChild(bloco);
     }
   }
 
   function exportarExcel() {
-    if (todasAsVagas.length === 0) return alert('Nenhuma vaga para exportar.');
-    const header = ['Área', 'Descrição', 'Link', 'Data'];
+    if (todasAsVagas.length === 0) return alert("Nenhuma vaga para exportar.");
+    const header = ["Área", "Descrição", "Link", "Data"];
     const linhas = todasAsVagas.map(v => [v["Área"], v["Descrição da vaga"], v["Link da vaga"], v["Carimbo de data/hora"]]);
-    const csv = [header, ...linhas].map(r => r.map(i => `"${i}"`).join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const csv = [header, ...linhas].map(r => r.map(i => `"${i}"`).join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = 'vagas-juridicas.csv';
+    a.download = "vagas-juridicas.csv";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   }
 
-  window.addEventListener('DOMContentLoaded', carregarVagasGoogleSheets);
+  window.addEventListener("DOMContentLoaded", carregarVagasGoogleSheets);
 </script>
 </body>
 </html>
