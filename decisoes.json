@@ -1,20 +1,14 @@
 [
   {
-    "titulo": "STF valida piso da enfermagem e reforça autonomia da lei federal",
-    "texto": "O Supremo Tribunal Federal decidiu pela constitucionalidade do piso salarial nacional da enfermagem, destacando que estados e municípios devem garantir os recursos necessários, respeitando sua autonomia financeira.",
-    "imagem": "https://www.stf.jus.br/portal/imagens/piso-enfermagem.jpg",
-    "fonte": "https://www.stf.jus.br/portal/cms/verNoticiaDetalhe.asp?idConteudo=518763"
+    "titulo": "STJ decide que é incabível o reconhecimento de união estável paralela ao casamento",
+    "imagem": "https://www.stj.jus.br/sites/portalp/PublishingImages/Noticias/2022/15092022-uniao-estavel.jpg",
+    "texto": "A Terceira Turma do STJ decidiu que é incabível o reconhecimento de união estável simultânea ao casamento, mesmo que iniciada antes do matrimônio. O entendimento reforça o princípio da monogamia no ordenamento jurídico brasileiro.",
+    "fonte": "https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/2022/15092022-E-incabivel-o-reconhecimento-de-uniao-estavel-paralela--ainda-que-iniciada-antes-do-casamento.aspx"
   },
   {
-    "titulo": "STJ reconhece união estável mesmo com casamento vigente",
-    "texto": "O Superior Tribunal de Justiça reconheceu a possibilidade de existência de união estável concomitante a um casamento formal, desde que haja separação de fato entre os cônjuges.",
-    "imagem": "https://www.stj.jus.br/imprensa/img/stj-uniao-estavel.jpg",
-    "fonte": "https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/2024/01042024-união-estável.aspx"
-  },
-  {
-    "titulo": "TST valida justa causa por uso reiterado de celular",
-    "texto": "O Tribunal Superior do Trabalho entendeu ser válida a demissão por justa causa de funcionário que, mesmo advertido diversas vezes, usava o celular pessoal durante o expediente.",
-    "imagem": "https://www.tst.jus.br/documents/10157/0/justa-causa-celular.jpg",
-    "fonte": "https://www.tst.jus.br/web/guest/noticias/-/asset_publisher/89Dk/content/id/7089839"
+    "titulo": "Justiça mantém demissão por justa causa por uso excessivo de celular no trabalho",
+    "imagem": "https://www.lumiun.com/blog/wp-content/uploads/2017/02/uso-indevido-do-celular-no-trabalho-pode-causar-demissao-por-justa-causa.jpg",
+    "texto": "A Justiça do Trabalho tem admitido a demissão por justa causa de trabalhadores que descumpriram regras de empresas que proíbem ou limitam o uso de celular. Decisões consideram que o uso indevido do aparelho pode comprometer a produtividade e a segurança no ambiente de trabalho.",
+    "fonte": "https://www.lumiun.com/blog/uso-indevido-do-celular-no-trabalho-pode-causar-demissao-por-justa-causa/"
   }
 ]
