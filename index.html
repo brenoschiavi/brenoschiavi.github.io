@@ -147,8 +147,9 @@
     <section>
         <h2>Conectando estudantes e oportunidades no Direito</h2>
         <p style="text-align: center; margin-bottom: 40px;">
-  O Estágio & Juris nasceu para ser mais que um canal: é uma comunidade para quem está começando, quer se informar e fazer a diferença no mundo jurídico.
-</p>
+            O Estágio & Juris nasceu para ser mais que um canal: é uma comunidade para quem está começando, quer se
+            informar e fazer a diferença no mundo jurídico.
+        </p>
 
 
         <div class="benefits">
@@ -220,9 +221,10 @@
             for (const area in organizadas) {
                 const bloco = document.createElement("div");
                 bloco.className = "benefit";
-                bloco.innerHTML = `<h3>⚖️ Direito ${area}</h3><ul>` +
-                    organizadas[area].map(v => `<li>${v.descricao} – <a href="${v.link}" target="_blank">Ver vaga</a></li>`).join("") +
+                bloco.innerHTML = `<h3>⚖️ Direito ${area}</h3><ul style="padding-left: 20px;">` +
+                    organizadas[area].map(v => `<li style="margin-bottom: 12px;">${v.descricao} – <a href="${v.link}" target="_blank">Ver vaga</a></li>`).join("") +
                     "</ul>";
+
                 vagasDiv.appendChild(bloco);
             }
         }
