@@ -158,30 +158,6 @@
             <div class="benefit">✔️ Decisões comentadas de forma acessível</div>
             <div class="benefit">✔️ Conteúdos úteis para sua jornada no Direito</div>
         </div>
- <h2 style="margin-top: 60px;">📌 Últimas Vagas Jurídicas</h2>
-
-    <h2 style="margin-top: 60px;">📰 Decisões Comentadas</h2>
-    <div id="decisoesComentadas" class="benefits"></div>
-    <script>
-      async function carregarNoticias() {
-        const response = await fetch('noticias.json');
-        const noticias = await response.json();
-        const container = document.getElementById('decisoesComentadas');
-
-        noticias.forEach(noticia => {
-          const card = document.createElement('div');
-          card.className = 'benefit';
-          card.innerHTML = `
-            <h3>${noticia.titulo}</h3>
-            <img src="${noticia.imagem}" alt="Imagem da notícia" style="width: 100%; border-radius: 8px; margin: 12px 0;">
-            <p>${noticia.texto}</p>
-          `;
-          container.appendChild(card);
-        });
-      }
-
-      carregarNoticias();
-        
         </p>
         <h2 style="margin-top: 60px;">📌 Últimas Vagas Jurídicas</h2>
         <div class="filter-buttons">
@@ -210,7 +186,7 @@
         let todasAsVagas = [];
 
         async function carregarVagasJSON() {
-            const response = await fetch(`${JSON_URL}?nocache=${Date.now()}`);
+            const response = await fetch(${ JSON_URL } ? nocache = ${ Date.now() });
             const data = await response.json();
             const hoje = new Date();
 
@@ -218,7 +194,7 @@
                 if (!v["Carimbo de data/hora"]) return false;
                 const [dia, mes, anoHora] = v["Carimbo de data/hora"].split("/");
                 const [ano, hora] = anoHora.split(" ");
-                const dataVaga = new Date(`${ano}-${mes}-${dia}T${hora}`);
+                const dataVaga = new Date(${ ano } - ${ mes } - ${ dia }T${ hora });
                 const diffDias = Math.floor((hoje - dataVaga) / (1000 * 60 * 60 * 24));
                 return diffDias <= 30;
             });
@@ -239,7 +215,7 @@
                 const area = vaga["Área"];
                 const descricao = vaga["Descrição da vaga"];
                 const link = vaga["Link da vaga"];
-                if (!area || !descricao) return;
+                if (!area || !descricao || !link) return;
                 if (filtro !== "Todas" && area !== filtro) return;
 
                 if (!organizadas[area]) organizadas[area] = [];
@@ -249,13 +225,8 @@
             for (const area in organizadas) {
                 const bloco = document.createElement("div");
                 bloco.className = "benefit";
-
-
-
-
-
-                bloco.innerHTML = `<h3>⚖️ Direito ${area}</h3><ul style="padding-left: 20px;">` +
-                    organizadoras[area].map(v => `<li>${v.descricao}${v.link ? ` – <a href="${v.link}" target="_blank">Ver vaga</a>` : ''}</li>`)
+                bloco.innerHTML = <h3>⚖️ Direito ${area}</h3><ul style="padding-left: 20px;"> +
+                    organizadas[area].map(v => <li style="margin-bottom: 12px;">${v.descricao} – <a href="${v.link}" target="_blank">Ver vaga</a></li>).join("") +
                     "</ul>";
 
                 vagasDiv.appendChild(bloco);
@@ -266,7 +237,7 @@
             if (todasAsVagas.length === 0) return alert("Nenhuma vaga para exportar.");
             const header = ["Área", "Descrição", "Link", "Data"];
             const linhas = todasAsVagas.map(v => [v["Área"], v["Descrição da vaga"], v["Link da vaga"], v["Carimbo de data/hora"]]);
-            const csv = [header, ...linhas].map(r => r.map(i => `"${i}"`).join(",")).join("\n");
+            const csv = [header, ...linhas].map(r => r.map(i => "${i}").join(",")).join("\n");
             const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
