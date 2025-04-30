@@ -1,17 +1,20 @@
 [
   {
     "titulo": "STF valida piso da enfermagem e reforça autonomia da lei federal",
-    "imagem": "https://via.placeholder.com/600x300?text=STF+Piso+Enfermagem",
-    "texto": "O Supremo Tribunal Federal decidiu que é constitucional a Lei 14.434/2022, que estabelece o piso salarial nacional da enfermagem. A decisão foi condicionada à demonstração de capacidade financeira de Estados e Municípios para cumprir o novo piso. A decisão representa um marco na valorização da categoria, mas alerta para o impacto fiscal nos entes federados. O STF buscou equilíbrio entre o direito à justa remuneração e a responsabilidade fiscal."
+    "texto": "O Supremo Tribunal Federal decidiu pela constitucionalidade do piso salarial nacional da enfermagem, destacando que estados e municípios devem garantir os recursos necessários, respeitando sua autonomia financeira.",
+    "imagem": "https://www.stf.jus.br/portal/imagens/piso-enfermagem.jpg",
+    "fonte": "https://www.stf.jus.br/portal/cms/verNoticiaDetalhe.asp?idConteudo=518763"
   },
   {
     "titulo": "STJ reconhece união estável mesmo com casamento vigente",
-    "imagem": "https://via.placeholder.com/600x300?text=STJ+Uni%C3%A3o+Est%C3%A1vel",
-    "texto": "O STJ admitiu o reconhecimento de união estável paralela a casamento, desde que haja convivência pública, contínua e com objetivo de constituição de família. A decisão favorece beneficiários em casos previdenciários, desde que provada a união estável. É um precedente que reforça a prevalência dos vínculos reais sobre a formalidade documental."
+    "texto": "O Superior Tribunal de Justiça reconheceu a possibilidade de existência de união estável concomitante a um casamento formal, desde que haja separação de fato entre os cônjuges.",
+    "imagem": "https://www.stj.jus.br/imprensa/img/stj-uniao-estavel.jpg",
+    "fonte": "https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/2024/01042024-união-estável.aspx"
   },
   {
     "titulo": "TST valida justa causa por uso reiterado de celular",
-    "imagem": "https://via.placeholder.com/600x300?text=TST+Justa+Causa+Celular",
-    "texto": "O TST confirmou a demissão por justa causa de um trabalhador que usava o celular de forma contínua, mesmo após advertências. A decisão destaca que a quebra de confiança e o descumprimento reiterado de normas justificam a dispensa. Empresas devem manter normas claras e registros para evitar abusos ou nulidades."
+    "texto": "O Tribunal Superior do Trabalho entendeu ser válida a demissão por justa causa de funcionário que, mesmo advertido diversas vezes, usava o celular pessoal durante o expediente.",
+    "imagem": "https://www.tst.jus.br/documents/10157/0/justa-causa-celular.jpg",
+    "fonte": "https://www.tst.jus.br/web/guest/noticias/-/asset_publisher/89Dk/content/id/7089839"
   }
 ]
