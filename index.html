@@ -154,12 +154,12 @@
     Criado por Breno Schiavi • Todos os direitos reservados © 2025
   </footer>
 
-  <script>
-  const PLANILHA_URL = "https://opensheet.elk.sh/1bzy9hGTzXX-ALl7_oi70J1NDQRtL8dA-6FVNwbv8jck/Vaga";
+<script>
+  const JSON_URL = "vagas.json";
   let todasAsVagas = [];
 
-  async function carregarVagasGoogleSheets() {
-    const response = await fetch(PLANILHA_URL);
+  async function carregarVagasJSON() {
+    const response = await fetch(JSON_URL);
     const data = await response.json();
     const hoje = new Date();
 
@@ -218,7 +218,8 @@
     URL.revokeObjectURL(url);
   }
 
-  window.addEventListener("DOMContentLoaded", carregarVagasGoogleSheets);
+  window.addEventListener("DOMContentLoaded", carregarVagasJSON);
 </script>
+
 </body>
 </html>
