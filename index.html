@@ -7,9 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
       font-family: 'Montserrat', sans-serif;
     }
     html, body {
@@ -77,22 +75,35 @@
       border-radius: 10px;
       border-left: 4px solid #f4c430;
     }
-    .cta {
+    .filter-buttons {
       text-align: center;
-      margin: 40px 0;
-      display: none;
+      margin-bottom: 30px;
     }
-    .cta a {
+    .filter-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      background: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .filter-buttons button.active,
+    .filter-buttons button:hover {
       background: #f4c430;
       color: #0e0e0e;
-      padding: 14px 28px;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 6px;
-      transition: transform 0.2s;
     }
-    .cta a:hover {
-      transform: scale(1.05);
+    .export-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 10px 20px;
+      background: #2e8b57;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
     }
     footer {
       text-align: center;
@@ -122,10 +133,86 @@
       <div class="benefit">✔️ Decisões comentadas de forma acessível</div>
       <div class="benefit">✔️ Conteúdos úteis para sua jornada no Direito</div>
     </div>
+
+    <h2 style="margin-top: 60px;">📌 Últimas Vagas Jurídicas</h2>
+
+    <div class="filter-buttons">
+      <button onclick="filtrarVagas('Todas')" class="active">Todas</button>
+      <button onclick="filtrarVagas('Trabalhista')">Trabalhista</button>
+      <button onclick="filtrarVagas('Penal')">Penal</button>
+      <button onclick="filtrarVagas('Tributário')">Tributário</button>
+      <button onclick="filtrarVagas('Civil')">Civil</button>
+      <button onclick="filtrarVagas('Societário')">Societário</button>
+    </div>
+
+    <div id="vagasDinamicas" class="benefits"></div>
+
+    <button class="export-btn" onclick="exportarExcel()">📥 Exportar Vagas em Excel</button>
   </section>
 
   <footer>
     Criado por Breno Schiavi • Todos os direitos reservados © 2025
   </footer>
+
+  <script>
+    const PLANILHA_URL = "https://opensheet.elk.sh/1C6PbBStsoUlHghzivWcLBYoJwFQMYGLcyGOslqWjGPM/Formulário 1";
+    let todasAsVagas = [];
+
+    async function carregarVagasGoogleSheets() {
+      const response = await fetch(PLANILHA_URL);
+      const data = await response.json();
+      const hoje = new Date();
+      todasAsVagas = data.filter(v => {
+        const dataVaga = new Date(v.data);
+        const diffDias = Math.floor((hoje - dataVaga) / (1000 * 60 * 60 * 24));
+        return diffDias <= 30;
+      });
+      filtrarVagas('Todas');
+    }
+
+    function filtrarVagas(filtro) {
+      const vagasDiv = document.getElementById('vagasDinamicas');
+      vagasDiv.innerHTML = '';
+      const organizadas = {};
+
+      document.querySelectorAll('.filter-buttons button').forEach(btn => btn.classList.remove('active'));
+      const btnAtivo = [...document.querySelectorAll('.filter-buttons button')].find(b => b.textContent === filtro || (filtro === 'Todas' && b.textContent === 'Todas'));
+      if (btnAtivo) btnAtivo.classList.add('active');
+
+      todasAsVagas.forEach(vaga => {
+        if (!vaga.area || (!vaga.descricao && !vaga.link)) return;
+        if (filtro !== 'Todas' && vaga.area !== filtro) return;
+        if (!organizadas[vaga.area]) organizadas[vaga.area] = [];
+        organizadas[vaga.area].push(vaga);
+      });
+
+      for (const area in organizadas) {
+        const bloco = document.createElement('div');
+        bloco.className = 'benefit';
+        bloco.innerHTML = `<h3>⚖️ Direito ${area}</h3><ul>` + 
+          organizadas[area].map(v => `<li>${v.descricao} – <a href="${v.link}" target="_blank">Ver vaga</a></li>`).join('') +
+          '</ul>';
+        vagasDiv.appendChild(bloco);
+      }
+    }
+
+    function exportarExcel() {
+      if (todasAsVagas.length === 0) return alert('Nenhuma vaga para exportar.');
+      const header = ['Área', 'Descrição', 'Link', 'Data'];
+      const linhas = todasAsVagas.map(v => [v.area, v.descricao, v.link, v.data]);
+      const csv = [header, ...linhas].map(r => r.map(i => `"${i}"`).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'vagas-juridicas.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    window.addEventListener('DOMContentLoaded', carregarVagasGoogleSheets);
+  </script>
 </body>
 </html>
