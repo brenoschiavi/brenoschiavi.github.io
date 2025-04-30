@@ -22,17 +22,7 @@
     .filter-buttons button { margin: 5px; padding: 10px 20px; border-radius: 6px; background: #333; color: #fff; border: none; cursor: pointer; font-weight: bold; }
     .filter-buttons button.active, .filter-buttons button:hover { background: #f4c430; color: #0e0e0e; }
     .export-btn { display: block; margin: 30px auto; padding: 10px 20px; background: #2e8b57; color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
-    footer {
-      position: relative;
-      bottom: 0;
-      width: 100%;
-      margin-top: 80px;
-      text-align: center;
-      padding: 20px;
-      background: #1b1b1b;
-      font-size: 0.9em;
-      border-top: 2px solid #2e2e2e;
-    }
+    footer { text-align: center; padding: 20px; background: #1b1b1b; font-size: 0.9em; border-top: 2px solid #2e2e2e; }
   </style>
 </head>
 <body>
@@ -47,16 +37,31 @@
 
   <section>
     <h2>Conectando estudantes e oportunidades no Direito</h2>
-    <p style="text-align: center; margin-bottom: 40px;"></p>
+    <p style="text-align: center;">O Estágio & Juris nasceu para ser mais que um canal: é uma comunidade para quem está começando, quer se informar e fazer a diferença no mundo jurídico.</p>
 
     
-      <div class="benefits">
-  <div class="benefit"><a href="cadastro.html" style="color: inherit; text-decoration: none; display: block;">✔️ Vagas de estágio e oportunidades reais</a></div>
-  <div class="benefit">✔️ Charges jurídicas com crítica e humor</div>
-  <div class="benefit">✔️ Decisões comentadas de forma acessível</div>
-  <div class="benefit">✔️ Conteúdos úteis para sua jornada no Direito</div>
+      <div class="benefit">✔️ Charges jurídicas com crítica e humor</div>
+      <div class="benefit">✔️ Decisões comentadas de forma acessível</div>
+      <div class="benefit">✔️ Conteúdos úteis para sua jornada no Direito</div>
+    </div>
+
+    <h2 style="margin-top: 60px;">📌 Últimas Vagas Jurídicas</h2>
+
+    
+    <div class="filter-buttons">
+  <button onclick="filtrarVagas('Todas')" class="active">Todas</button>
+  <button onclick="filtrarVagas('Área')">Área</button>
+  <button onclick="filtrarVagas('Civil')">Civil</button>
+  <button onclick="filtrarVagas('Penal')">Penal</button>
+  <button onclick="filtrarVagas('Previdenciário')">Previdenciário</button>
+  <button onclick="filtrarVagas('Societário')">Societário</button>
+  <button onclick="filtrarVagas('Trabalhista')">Trabalhista</button>
+  <button onclick="filtrarVagas('Tributário')">Tributário</button>
+  <button onclick="filtrarVagas('Área Não Informada')">Área Não Informada</button>
 </div>
 
+    <div id="vagasDinamicas" class="benefits"></div>
+    <button class="export-btn" onclick="exportarExcel()">📥 Exportar Vagas em Excel</button>
   </section>
 
   <footer>
