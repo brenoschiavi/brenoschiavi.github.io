@@ -158,6 +158,30 @@
             <div class="benefit">✔️ Decisões comentadas de forma acessível</div>
             <div class="benefit">✔️ Conteúdos úteis para sua jornada no Direito</div>
         </div>
+ <h2 style="margin-top: 60px;">📌 Últimas Vagas Jurídicas</h2>
+
+    <h2 style="margin-top: 60px;">📰 Decisões Comentadas</h2>
+    <div id="decisoesComentadas" class="benefits"></div>
+    <script>
+      async function carregarNoticias() {
+        const response = await fetch('noticias.json');
+        const noticias = await response.json();
+        const container = document.getElementById('decisoesComentadas');
+
+        noticias.forEach(noticia => {
+          const card = document.createElement('div');
+          card.className = 'benefit';
+          card.innerHTML = `
+            <h3>${noticia.titulo}</h3>
+            <img src="${noticia.imagem}" alt="Imagem da notícia" style="width: 100%; border-radius: 8px; margin: 12px 0;">
+            <p>${noticia.texto}</p>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      carregarNoticias();
+        
         </p>
         <h2 style="margin-top: 60px;">📌 Últimas Vagas Jurídicas</h2>
         <div class="filter-buttons">
