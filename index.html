@@ -164,7 +164,9 @@
     const hoje = new Date();
 
     todasAsVagas = data.filter(v => {
-      const dataVaga = new Date(v["Carimbo de data/hora"]);
+      const [dia, mes, anoHora] = v["Carimbo de data/hora"].split("/");
+      const [ano, hora] = anoHora.split(" ");
+      const dataVaga = new Date(`${ano}-${mes}-${dia}T${hora}`);
       const diffDias = Math.floor((hoje - dataVaga) / (1000 * 60 * 60 * 24));
       return diffDias <= 30;
     });
@@ -178,7 +180,7 @@
     const organizadas = {};
 
     document.querySelectorAll(".filter-buttons button").forEach(btn => btn.classList.remove("active"));
-    const btnAtivo = [...document.querySelectorAll(".filter-buttons button")].find(b => b.textContent === filtro);
+    const btnAtivo = [...document.querySelectorAll(".filter-buttons button")].find(b => b.textContent.trim() === filtro);
     if (btnAtivo) btnAtivo.classList.add("active");
 
     todasAsVagas.forEach(vaga => {
@@ -220,6 +222,7 @@
 
   window.addEventListener("DOMContentLoaded", carregarVagasJSON);
 </script>
+
 
 </body>
 </html>
