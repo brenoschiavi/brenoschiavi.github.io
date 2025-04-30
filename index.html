@@ -239,7 +239,7 @@
                 const area = vaga["Área"];
                 const descricao = vaga["Descrição da vaga"];
                 const link = vaga["Link da vaga"];
-                if (!area || !descricao || !link) return;
+                if (!area || !descricao) return;
                 if (filtro !== "Todas" && area !== filtro) return;
 
                 if (!organizadas[area]) organizadas[area] = [];
@@ -249,8 +249,13 @@
             for (const area in organizadas) {
                 const bloco = document.createElement("div");
                 bloco.className = "benefit";
+
+
+
+
+
                 bloco.innerHTML = `<h3>⚖️ Direito ${area}</h3><ul style="padding-left: 20px;">` +
-                    organizadas[area].map(v => `<li style="margin-bottom: 12px;">${v.descricao} – <a href="${v.link}" target="_blank">Ver vaga</a></li>`).join("") +
+                    organizadoras[area].map(v => `<li>${v.descricao}${v.link ? ` – <a href="${v.link}" target="_blank">Ver vaga</a>` : ''}</li>`)
                     "</ul>";
 
                 vagasDiv.appendChild(bloco);
