@@ -68,7 +68,7 @@
     let todasAsVagas = [];
 
     async function carregarVagasJSON() {
-      const response = await fetch(JSON_URL);
+      const response = await fetch(`${JSON_URL}?nocache=${Date.now()}`);
       const data = await response.json();
       const hoje = new Date();
 
